@@ -53,6 +53,57 @@ p{
     font-size:17px;
 }
 
+.audio-player{
+    display:block;
+    margin:20px auto;
+    width:100%;
+    max-width:320px;
+    height:45px;
+    border-radius:30px;
+    overflow:hidden;
+    background:rgba(223, 0, 223, 0.08);
+    box-shadow:0 0 18px rgba(248, 48, 148, 0.25);
+}
+
+/* BOTONES SI / NO */
+    .botones-respuesta{
+        display:none;
+        justify-content:center;
+        gap:15px;
+        margin-top:20px;
+        flex-wrap:wrap;
+    }
+
+    .botones-respuesta button{
+        padding:12px 25px;
+        border:none;
+        border-radius:12px;
+        font-size:18px;
+        cursor:pointer;
+        color:white;
+        background:linear-gradient(45deg,#cf3e6f,#c0174a);
+        transition:0.3s;
+    }
+
+    .botones-respuesta button:hover{
+        transform:scale(1.05);
+    }
+
+    /* MENSAJE FINAL */
+    .mensaje-final{
+        text-align:center;
+        font-size:24px;
+        margin-top:20px;
+        font-weight:bold;
+        opacity:0;
+        transition:0.5s;
+    }
+
+    .mensaje-final.show{
+        opacity:1;
+    }
+
+
 /* BOTON */
 .hidden-btn{
     color:white;
@@ -151,19 +202,22 @@ p{
 <body>
 
 <div class="container">
-
+    <audio id="musica" autoplay loop controls class="audio-player" volume="0.3">
+        <source src="Coldplay.mp3" type="audio/mpeg">
+    </audio>
     <h1>Para mi hermosa reina Alle ❤️</h1>
 
     <p>
-        Bueno… no sé muy bien cómo empezar esto, la verdad. Tampoco soy de hacer estas cosas, es raro en mí jaja.
+        Bueno… no sé muy bien cómo empezar esto, la verdad. Tampoco soy de hacer estas cosas, es raro para mi y me da un poco de cringe, pero bueno todo sea por vos jaja.
         Pero quiero hacerlo siendo totalmente sincero y honesto con lo que siento en el corazón.
     </p>
     <p>
-        No sé si preferías una carta como tal, pero voy a usar mi fuerte, que es la tecnología, haciendo esta página jaja.
+        No sé si preferías una carta como tal, pero soy horrible escribiendo y tambien para las manualidades, asi que voy a usar lo que mejor se me da que es la Informatica/Tecnologia,
+        haciendo esta pagina para vos.
     </p>
     <p>
-        No puedo dejar de pensar qué hubiese pasado si no hubiera mandado el CV a Mirgor. 
-        Probablemente no nos hubiésemos encontrado nunca, no nos hubiéramos conocido… y eso me deja pensando mucho.
+        No puedo dejar de pensar qué hubiese pasado si no hubiera aplicado a la entrevista de Mirgor y tambien si no me hubiesen llamado. 
+        Probablemente no nos hubiésemos encontrado nunca, no nos hubiéramos conocido y eso me deja pensando demasiado...
     </p>
 
     <p>
@@ -224,34 +278,73 @@ p{
     ¿Querés formalizar lo nuestro? ¿Querés ser mi novia? ❤️
     </div>
 
+    <div id="opciones" class="botones-respuesta">
+        <button onclick="respuestaSi()">Sí ❤️</button>
+        <button onclick="respuestaNo()">No 😢</button>
+    </div>
+
+    <!-- MENSAJE FINAL -->
+    <div id="mensajeFinal" class="mensaje-final"></div>
 </div>
 
 <script>
-function mostrarPregunta(){
+    function mostrarPregunta(){
 
-    document.getElementById("pregunta").classList.add("show");
+        document.getElementById("pregunta").classList.add("show");
 
-    for(let i=0;i<45;i++){
-        setTimeout(crearCorazon, i*120);
+        for(let i=0;i<45;i++){
+            setTimeout(crearCorazon, i*120);
+        }
     }
-}
 
-function crearCorazon(){
+    function crearCorazon(){
 
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💖";
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
 
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (20 + Math.random()*25) + "px";
-    heart.style.animationDuration = (3 + Math.random()*2) + "s";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.fontSize = (20 + Math.random()*25) + "px";
+        heart.style.animationDuration = (3 + Math.random()*2) + "s";
 
-    document.body.appendChild(heart);
+        document.body.appendChild(heart);
 
-    setTimeout(()=>{
-        heart.remove();
-    },5000);
-}
+        setTimeout(()=>{
+            heart.remove();
+        },5000);
+    }
+
+    function mostrarPregunta(){
+
+        document.getElementById("pregunta").classList.add("show");
+        document.getElementById("opciones").style.display = "flex";
+
+        for(let i=0;i<45;i++){
+            setTimeout(crearCorazon, i*120);
+        }
+    }
+
+    function respuestaSi(){
+        const mensaje = document.getElementById("mensajeFinal");
+        mensaje.innerHTML = "Sabía que dirías que sí, sos lo mejor que me pasó. ❤️❤️ Te Amo Alle. ❤️❤️";
+        mensaje.classList.add("show");
+    }
+
+    function respuestaNo(){
+        const mensaje = document.getElementById("mensajeFinal");
+        mensaje.innerHTML = "Bueno... igual te voy a seguir queriendo muchísimo";
+        mensaje.classList.add("show");
+    }
+
+    window.addEventListener("load", () => {
+    const musica = document.getElementById("musica");
+
+    musica.volume = 0.30; // volumen al 30%
+
+    musica.play().catch(() => {
+        console.log("Autoplay bloqueado por el navegador.");
+    });
+});
 </script>
 
 </body>
