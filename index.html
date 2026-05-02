@@ -205,11 +205,11 @@ p{
     <audio id="musica" autoplay loop controls class="audio-player" volume="0.3">
         <source src="Coldplay.mp3" type="audio/mpeg">
     </audio>
-    <h1>Para mi hermosa reina Alle ❤️</h1>
+    <h1> Para vos, Alle 💫 🌌</h1>
 
     <p>
         Bueno… no sé muy bien cómo empezar esto, la verdad. Tampoco soy de hacer estas cosas, es raro para mi y me da un poco de cringe, pero bueno todo sea por vos jaja.
-        Pero quiero hacerlo siendo totalmente sincero y honesto con lo que siento en el corazón.
+        Pero quiero hacerlo siendo totalmente sincero y honesto con lo que siento.
     </p>
     <p>
         No sé si preferías una carta como tal, pero soy horrible escribiendo y tambien para las manualidades, asi que voy a usar lo que mejor se me da que es la Informatica/Tecnologia,
@@ -291,10 +291,6 @@ p{
     function mostrarPregunta(){
 
         document.getElementById("pregunta").classList.add("show");
-
-        for(let i=0;i<45;i++){
-            setTimeout(crearCorazon, i*120);
-        }
     }
 
     function crearCorazon(){
@@ -318,21 +314,20 @@ p{
 
         document.getElementById("pregunta").classList.add("show");
         document.getElementById("opciones").style.display = "flex";
-
-        for(let i=0;i<45;i++){
-            setTimeout(crearCorazon, i*120);
-        }
     }
 
     function respuestaSi(){
         const mensaje = document.getElementById("mensajeFinal");
-        mensaje.innerHTML = "Sabía que dirías que sí, sos lo mejor que me pasó. ❤️❤️ Te Amo Alle. ❤️❤️";
+        mensaje.innerHTML = "Sabía que dirías que sí, sos lo mejor que me pasó. 💘❤️ Te Amo Alle. ❤️💘";
         mensaje.classList.add("show");
+        for(let i=0;i<90;i++){
+            setTimeout(crearCorazon, i*120);
+        }
     }
 
     function respuestaNo(){
         const mensaje = document.getElementById("mensajeFinal");
-        mensaje.innerHTML = "Bueno... igual te voy a seguir queriendo muchísimo";
+        mensaje.innerHTML = "Bueno...😢 igual te voy a seguir queriendo muchísimo";
         mensaje.classList.add("show");
     }
 
